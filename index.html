@@ -1081,8 +1081,8 @@ Book a Free Consultation →
       </p>
     </div>
 
-    <form action="https://formspree.io/f/xeaojpeq" method="POST" style="background: #ffffff; padding: 36px; border-radius: 16px;">
-      <input type="hidden" name="_next" value="https://pollard1971.github.io/excedere/#thank-you">
+    <form id="contact-form" action="https://formspree.io/f/xeaojpeq" method="POST" style="background: #ffffff; padding: 36px; border-radius: 16px;">
+
 
       <label for="name">Name *</label>
       <input type="text" id="name" name="name" required
@@ -1149,6 +1149,35 @@ Business Beyond Borders
 </div>
 
 </footer>
+
+<script>
+  const contactForm = document.getElementById("contact-form");
+
+  contactForm.addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        contactForm.reset();
+        window.location.href = "#thank-you";
+      } else {
+        alert("Sorry, there was a problem sending your enquiry. Please try again.");
+      }
+    } catch (error) {
+      alert("Sorry, there was a problem sending your enquiry. Please try again.");
+    }
+  });
+</script>
 
 </body>
 </html>
