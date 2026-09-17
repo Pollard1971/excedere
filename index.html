@@ -1070,6 +1070,128 @@ Book a Free Consultation →
 
 </section>
 
+  <section id="calculator" style="padding: 90px 0; background: #0B1F33;">
+  <div class="container" style="max-width: 900px;">
+
+    <div style="text-align: center; margin-bottom: 40px;">
+      <h2 style="color: #ffffff; margin-bottom: 12px;">
+        Outsourcing Savings Calculator
+      </h2>
+
+      <p style="color: #E6F2F8; font-size: 18px; max-width: 700px; margin: 0 auto;">
+        Explore what outsourcing could mean for your business. Compare your current employment costs with potential global staffing options.
+      </p>
+    </div>
+<div id="calculator-card" style="background: #ffffff; padding: 36px; border-radius: 16px;">
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+
+    <div>
+      <label for="home-country"><strong>Your location</strong></label>
+      <select id="home-country" style="width:100%; padding:14px; margin-top:8px; border:1px solid #cbd5df; border-radius:8px;">
+        <option value="USD">United States ($)</option>
+        <option value="GBP">United Kingdom (£)</option>
+        <option value="CAD">Canada (C$)</option>
+        <option value="AUD">Australia (A$)</option>
+        <option value="NZD">New Zealand (NZ$)</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="role"><strong>Role you are considering outsourcing</strong></label>
+      <select id="role" style="width:100%; padding:14px; margin-top:8px; border:1px solid #cbd5df; border-radius:8px;">
+        <option value="bookkeeping">Bookkeeping / Accounting</option>
+        <option value="customer-service">Customer Service</option>
+        <option value="administration">Administration</option>
+        <option value="marketing">Marketing</option>
+        <option value="it">IT / Software</option>
+        <option value="sales">Sales Support</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 28px;">
+
+  <div>
+    <label for="employees"><strong>Number of employees</strong></label>
+    <input type="number" id="employees" min="1" value="1"
+      style="width:100%; padding:14px; margin-top:8px; border:1px solid #cbd5df; border-radius:8px;">
+  </div>
+
+  <div>
+    <label for="current-cost"><strong>Current monthly cost per employee</strong></label>
+    <input type="number" id="current-cost" min="0" placeholder="e.g. 5000"
+      style="width:100%; padding:14px; margin-top:8px; border:1px solid #cbd5df; border-radius:8px;">
+  </div>
+
+  <div>
+    <label for="destination"><strong>Outsourcing destination</strong></label>
+    <select id="destination"
+      style="width:100%; padding:14px; margin-top:8px; border:1px solid #cbd5df; border-radius:8px;">
+      <option value="philippines">Philippines</option>
+      <option value="latin-america">Latin America</option>
+      <option value="europe">Europe</option>
+      <option value="other">Other / Not Sure</option>
+    </select>
+  </div>
+
+</div>
+
+  <div style="text-align: center; margin-top: 32px;">
+  <button type="button" id="calculate-savings" class="button"
+    style="border:0; cursor:pointer; font-size:16px;">
+    Calculate My Potential Savings →
+  </button>
+</div>
+
+  <div id="savings-results" style="display:none; margin-top:32px; padding:30px; background:#E6F2F8; border-radius:12px;">
+
+  <h3 style="color:#0B1F33; margin-bottom:20px; text-align:center;">
+    Your Outsourcing Estimate
+  </h3>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:20px; text-align:center;">
+
+    <div>
+      <strong>Current Annual Cost</strong>
+      <div id="current-annual" style="font-size:24px; margin-top:8px;">—</div>
+    </div>
+
+    <div>
+      <strong>Estimated Outsourced Cost</strong>
+      <div id="outsourced-annual" style="font-size:24px; margin-top:8px;">—</div>
+    </div>
+
+    <div>
+      <strong>Potential Annual Saving</strong>
+      <div id="annual-saving" style="font-size:24px; margin-top:8px;">—</div>
+    </div>
+
+  </div>
+
+  <div id="saving-percentage" style="text-align:center; margin-top:26px; font-size:30px; font-weight:700; color:#00A99D;">
+    —
+  </div>
+
+  <p id="calculator-note" style="text-align:center; color:#526779; margin:18px auto 0; max-width:700px;">
+  </p>
+
+  <div style="text-align:center; margin-top:26px;">
+    <a href="https://cal.com/excedere/consultation" class="button">
+      Discuss My Options →
+    </a>
+  </div>
+
+</div>
+
+</div>
+    
+
+  </div>
+</section>
+  
   <section id="contact" style="padding: 80px 0; background: #E6F2F8;">
   <div class="container" style="max-width: 760px;">
 
@@ -1177,6 +1299,67 @@ Business Beyond Borders
       alert("Sorry, there was a problem sending your enquiry. Please try again.");
     }
   });
+
+  const calculateButton = document.getElementById("calculate-savings");
+
+calculateButton.addEventListener("click", function () {
+  const employees = Number(document.getElementById("employees").value);
+  const monthlyCost = Number(document.getElementById("current-cost").value);
+  const destination = document.getElementById("destination").value;
+  const homeCountry = document.getElementById("home-country").value;
+
+  if (!employees || !monthlyCost) {
+    alert("Please enter the number of employees and your current monthly cost per employee.");
+    return;
+  }
+
+  let savingRate;
+
+  if (destination === "philippines") {
+    savingRate = 0.60;
+  } else if (destination === "latin-america") {
+    savingRate = 0.45;
+  } else if (destination === "europe") {
+    savingRate = 0.45;
+  } else {
+    savingRate = 0.40;
+  }
+
+  const symbols = {
+    USD: "$",
+    GBP: "£",
+    CAD: "C$",
+    AUD: "A$",
+    NZD: "NZ$"
+  };
+
+  const symbol = symbols[homeCountry] || "$";
+
+  const currentAnnual = employees * monthlyCost * 12;
+  const annualSaving = currentAnnual * savingRate;
+  const outsourcedAnnual = currentAnnual - annualSaving;
+
+  document.getElementById("current-annual").textContent =
+    symbol + currentAnnual.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  document.getElementById("outsourced-annual").textContent =
+    symbol + outsourcedAnnual.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  document.getElementById("annual-saving").textContent =
+    symbol + annualSaving.toLocaleString(undefined, {maximumFractionDigits: 0});
+
+  document.getElementById("saving-percentage").textContent =
+    "Potential saving: approximately " + Math.round(savingRate * 100) + "%";
+
+  const notes = {
+    philippines: "The Philippines can offer significant cost efficiencies, often around 50–70% depending on the role, experience and staffing model.",
+    "latin-america": "Latin America can combine competitive costs with strong time-zone alignment for businesses across the Americas.",
+    europe: "European outsourcing can offer access to specialist expertise where the value may be driven as much by skills and capability as by cost savings.",
+    other: "Actual outsourcing costs vary considerably by country, role, experience and employment model."
+  };
+
+  document.getElementById("calculator-note").textContent = notes[destination];
+});
 </script>
 
 </body>
