@@ -277,6 +277,79 @@ h1 {
 
 /* STANDARD SECTIONS */
 
+  /* EXCEDERE HERO BRAND */
+
+.hero-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 330px;
+}
+
+.hero-mark {
+  position: relative;
+  width: 150px;
+  height: 135px;
+  margin-bottom: 22px;
+  filter: drop-shadow(0 0 24px rgba(66, 216, 210, .28));
+}
+
+.hero-mark span {
+  position: absolute;
+  left: 20px;
+  height: 22px;
+  border-radius: 3px;
+  transform: skewX(-28deg);
+  background: linear-gradient(90deg, #00c4b3, #3aa6ff);
+  box-shadow: 0 0 22px rgba(58, 166, 255, .22);
+}
+
+.hero-mark .mark-top {
+  top: 12px;
+  width: 118px;
+}
+
+.hero-mark .mark-middle {
+  top: 55px;
+  width: 92px;
+}
+
+.hero-mark .mark-bottom {
+  top: 98px;
+  width: 118px;
+}
+
+.hero-mark::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 24px;
+  height: 112px;
+  border-radius: 3px;
+  transform: skewY(-28deg);
+  background: linear-gradient(180deg, #00c4b3, #3aa6ff);
+  box-shadow: 0 0 24px rgba(0, 196, 179, .25);
+}
+
+.hero-brand-name {
+  color: #ffffff;
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  line-height: 1;
+}
+
+.hero-brand-tagline {
+  margin-top: 12px;
+  color: #dce8ef;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  white-space: nowrap;
+}
+
 section {
   padding: 90px 0;
 }
@@ -684,7 +757,16 @@ the outsourcing market alone.
 </div>
 
 <div class="globe-message">
-Business Beyond Borders
+  <div class="hero-brand">
+    <div class="hero-mark" aria-hidden="true">
+      <span class="mark-top"></span>
+      <span class="mark-middle"></span>
+      <span class="mark-bottom"></span>
+    </div>
+
+    <div class="hero-brand-name">EXCEDERE</div>
+    <div class="hero-brand-tagline">BUSINESS BEYOND BORDERS</div>
+  </div>
 </div>
 
 </div>
