@@ -59,6 +59,13 @@ nav {
   text-decoration: none;
 }
 
+  .header-logo {
+  display: block;
+  width: 230px;
+  height: auto;
+  object-fit: contain;
+}
+
 .brand-mark {
   width: 46px;
   height: 46px;
@@ -349,38 +356,12 @@ h1 {
   letter-spacing: 4px;
   white-space: nowrap;
 }
-
-  .hero-logo {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  text-align: left;
-}
-
-.hero-logo .brand-mark {
-  width: 105px;
-  height: 105px;
-  flex-shrink: 0;
-}
-
-.hero-logo .brand-mark::before {
-  width: 95px;
-  height: 95px;
-  font-size: 62px;
-  border-width: 4px;
-  filter: drop-shadow(0 0 18px rgba(49, 213, 206, .35));
-}
-
-.hero-logo .brand-name {
-  font-size: 42px;
-  letter-spacing: 10px;
-}
-
-.hero-logo .brand-tagline {
-  margin-top: 10px;
-  font-size: 11px;
-  letter-spacing: 4px;
-  white-space: nowrap;
+.hero-logo-image {
+  display: block;
+  width: 430px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 section {
@@ -724,12 +705,7 @@ footer {
 <nav>
 
 <a href="#" class="brand">
-  <div class="brand-mark"></div>
-
-  <div>
-    <div class="brand-name">EXCEDERE</div>
-    <div class="brand-tagline">Business Beyond Borders</div>
-  </div>
+  <img src="excedere-logo.png" alt="Excedere - Business Beyond Borders" class="header-logo">
 </a>
 
 <div class="nav-links">
@@ -790,14 +766,7 @@ the outsourcing market alone.
 </div>
 
 <div class="globe-message">
-  <div class="hero-logo">
-    <div class="brand-mark"></div>
-
-    <div>
-      <div class="brand-name">EXCEDERE</div>
-      <div class="brand-tagline">Business Beyond Borders</div>
-    </div>
-  </div>
+  <img src="excedere-logo.png" alt="Excedere - Business Beyond Borders" class="hero-logo-image">
 </div>
 
 </div>
