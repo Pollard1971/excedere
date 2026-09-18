@@ -734,6 +734,7 @@
 
 
 <main>
+  <div id="enquiry-status" class="container" role="status" hidden style="padding:24px 0; color:#0b334c;">Thank you. Your enquiry has been sent to Excedere. We will be in touch soon.</div>
 
   <!-- HERO -->
 
@@ -1475,6 +1476,7 @@
           Send Enquiry →
         </button>
 
+        <p id="form-status" role="status" aria-live="polite"></p>
       </form>
 
     </div>
@@ -1611,6 +1613,43 @@
 
   }
 
+</script>
+
+
+<script>
+  const enquiryForm = document.querySelector('.contact-form');
+  const enquiryStatus = document.getElementById('enquiry-status');
+  if (new URLSearchParams(window.location.search).get('enquiry') === 'sent') {
+    enquiryStatus.hidden = false;
+  }
+  enquiryForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const button = enquiryForm.querySelector('button[type="submit"]');
+    if (button.disabled) return;
+    const label = button.textContent;
+    const status = document.getElementById('form-status');
+    button.disabled = true;
+    button.textContent = 'Sending...';
+    status.textContent = '';
+    try {
+      const response = await fetch(enquiryForm.action, {
+        method: 'POST',
+        body: new FormData(enquiryForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (!response.ok) {
+        status.textContent = 'Your enquiry could not be sent. Please try again, or use Book a Consultation.';
+        return;
+      }
+      enquiryForm.reset();
+      window.location.assign('./?enquiry=sent');
+    } catch (error) {
+      status.textContent = 'We could not confirm delivery. Please check your connection before trying again, or use Book a Consultation.';
+    } finally {
+      button.disabled = false;
+      button.textContent = label;
+    }
+  });
 </script>
 
 </body>
