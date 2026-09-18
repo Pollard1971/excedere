@@ -91,20 +91,22 @@
       background:
         linear-gradient(115deg, #061725 0%, #09253b 55%, #0b3653 100%);
       color: #ffffff;
-      min-height: 720px;
+      padding: 0;
       overflow: hidden;
     }
 
     .hero-grid {
-      min-height: 720px;
+      min-height: 660px;
       display: grid;
-      grid-template-columns: 1fr 1.05fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
       align-items: center;
-      gap: 55px;
+      gap: 32px;
     }
 
     .hero-content {
-      padding: 80px 0;
+      position: relative;
+      z-index: 1;
+      padding: 60px 0;
     }
 
     .eyebrow {
@@ -189,17 +191,22 @@
 
     .hero-visual {
       position: relative;
+      min-width: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .hero-globe {
-      width: 100%;
-      max-width: 700px;
+      width: 114%;
+      max-width: none;
+      flex-shrink: 0;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 40px rgba(58,166,255,.18));
+      /* Fade the existing image into the hero without blurring the globe. */
+      mix-blend-mode: screen;
+      -webkit-mask-image: radial-gradient(ellipse closest-side, #000 62%, transparent 100%);
+      mask-image: radial-gradient(ellipse closest-side, #000 62%, transparent 100%);
     }
 
     /* SECTIONS */
@@ -600,15 +607,16 @@
       }
 
       .hero-content {
-        padding: 70px 0 25px;
+        padding: 48px 0 20px;
       }
 
       .hero-visual {
-        padding-bottom: 50px;
+        padding-bottom: 36px;
       }
 
       .hero-globe {
-        max-width: 560px;
+        width: 100%;
+        max-width: 620px;
         margin: 0 auto;
       }
 
@@ -657,7 +665,7 @@
       }
 
       .hero-content {
-        padding-top: 65px;
+        padding-top: 40px;
       }
 
       h1 {
