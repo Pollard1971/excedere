@@ -1156,6 +1156,8 @@
             <select id="location">
               <option value="usd">United States ($)</option>
               <option value="gbp">United Kingdom (£)</option>
+              <option value="cad">Canada (C$)</option>
+              <option value="aud">Australia (A$)</option>
               <option value="nzd">New Zealand (NZ$)</option>
             </select>
           </div>
@@ -1201,7 +1203,8 @@
             <select id="destination">
               <option value="0.40">Philippines</option>
               <option value="0.50">Latin America</option>
-              <option value="0.55">Other Global Markets</option>
+              <option value="0.55">Europe</option>
+              <option value="0.60">Other / Not Sure</option>
             </select>
           </div>
 
@@ -1215,7 +1218,7 @@
           Calculate My Potential Savings →
         </button>
 
-        <div id="savings-results">
+        <div id="savings-results" tabindex="-1" role="region" aria-label="Your potential savings">
 
           <div class="results-grid">
 
@@ -1574,7 +1577,7 @@
         : 0;
 
 
-    let currencySymbol = "$";
+    let currencySymbol = { usd: "$", gbp: "£", cad: "C$", aud: "A$", nzd: "NZ$" }[location] || "$";
 
     if (location === "gbp") {
       currencySymbol = "£";
@@ -1608,8 +1611,14 @@
       "%";
 
 
-    document.getElementById("savings-results").style.display =
-      "block";
+    const results = document.getElementById("savings-results");
+    results.style.display = "block";
+    results.style.scrollMarginTop = (document.querySelector("header").getBoundingClientRect().height + 20) + "px";
+    results.focus({ preventScroll: true });
+    results.scrollIntoView({
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      block: "start"
+    });
 
   }
 
